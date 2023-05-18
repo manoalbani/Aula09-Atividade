@@ -3,24 +3,19 @@ import './App.css'
 
 function App() {
   let [livros, setLivros] = useState([]);
-  let[nomeLivro, setNomeLivro] = useState('');
-  let[codigoLivro, setCodigoLivro] = useState('');
-  let[autorLivro, setAutorLivro] = useState('');
+  let[livro, setLivro] = useState({});
 
   function addLivro(){
-    let livro = {
-      codigo: codigoLivro,
-      nome:nomeLivro,
-      autor: autorLivro,
-    }
     livros.push(livro);
     setLivros([...livros]);
     limparForm();
   }
   function limparForm(){
-    setNomeLivro('');
-    setCodigoLivro('');
-    setAutorLivro('');
+    setLivro({
+      codigo:'',
+      nome:'',
+      autor:'',
+    });
   }
 
   function removerLivro(livro){
@@ -33,18 +28,21 @@ function App() {
     <div>
    <input 
    placeholder='Código'
-    value={codigoLivro}
-    onChange={(e)=>{ setCodigoLivro(e.target.value)}}
+    value={livro.codigo}
+    onChange={(e)=>{ livro.codigo = e.target.value
+      setLivro({...livro})}}
    />
    <input 
     placeholder='Nome Livro'
-    value={nomeLivro}
-    onChange={(e)=>{ setNomeLivro(e.target.value)}}
+    value={livro.nome}
+    onChange={(e)=>{ livro.nome = e.target.value
+      setLivro({...livro})}}
    />
    <input 
     placeholder='Autor'
-    value={autorLivro}
-    onChange={(e)=>{ setAutorLivro(e.target.value)}}
+    value={livro.autor}
+    onChange={(e)=>{ livro.autor = e.target.value
+      setLivro({...livro})}}
    />
    <button onClick={addLivro}>Salvar</button>
    <div className='livros'>
